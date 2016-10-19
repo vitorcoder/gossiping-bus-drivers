@@ -8,16 +8,26 @@ class BusStop:
         self.number = number
         self.currentDrivers = set();
         
-    def checkGossips(self, drivers):
+    def findDriversInStop(self, drivers):
+        result = set();
+        
         for d in drivers:
             if d.currentStop == self.number:
-                self.currentDrivers.add(d)
-                
+                result.add(d)
+        
+        return result
+
+        
+    def checkGossips(self, drivers):
+        
+        self.currentDrivers = set()
+        self.currentDrivers.update(self.findDriversInStop(drivers))
+        
         while len(self.currentDrivers) > 0:
             driver = self.currentDrivers.pop()
             for d in self.currentDrivers:
                 d.exchangeGossip(driver)    
-                    
-        self.currentDrivers = set()        
+           
+                
         
         

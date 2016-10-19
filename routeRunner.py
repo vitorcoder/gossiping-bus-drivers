@@ -14,7 +14,7 @@ class RouteRunner:
         
         while i < 481:
         
-            print "day {}".format(i)
+            print "minute {}".format(i)
             for d in self.drivers:
                 d.travelToNextStop()
                 print "   driver {} is int stop {}".format(d.name, d.currentStop) 
@@ -41,5 +41,8 @@ class RouteRunner:
                 
         if i < 481:
             print "gossips where spread to all drivers in {} minutes!".format(i)
+            return i
         else:
             print "the drivers never will know all gossips"
+            return None
+        
